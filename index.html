@@ -98,10 +98,10 @@
   <h3>2- Séptupla Formal</h3>
   <p>
     La Máquina de Turing se define como una séptupla:<br>
-    <strong>M = (Q, Σ, Γ, δ, q₀, q_accept, q_reject)</strong>
+    <strong>M = (Q, Σ, Γ, δ, q₀, q2, qdenegado)</strong>
   </p>
   <ul class="listado">
-    <li><strong>Q</strong> = {q₀, q₁, q₂, q_accept}</li>
+    <li><strong>Q</strong> = {q₀, q₁, q₂, q2}</li>
     <li><strong>Σ</strong> = {0, 1, _} — Alfabeto de entrada (números binarios y espacio)</li>
     <li><strong>Γ</strong> = {0, 1, _, □} — Alfabeto de la cinta</li>
     <li><strong>q₀</strong> — Estado inicial (inicio de lectura)</li>
@@ -129,7 +129,7 @@
       <td>q₁</td><td>0, 1</td><td>Resultado de la suma bit a bit</td><td>←</td><td>q₁</td>
     </tr>
     <tr>
-      <td>q₁</td><td>_</td><td>Resultado final escrito</td><td>→</td><td>q_accept</td>
+      <td>q₁</td><td>_</td><td>Resultado final escrito</td><td>→</td><td>q2</td>
     </tr>
   </table>
 
@@ -160,7 +160,7 @@
 (q₀, 101_11, 1)
 (q₀, 101_11, 2)
 (q₁, 101_11, 4)
-(q_accept, 1000, 6)
+(q2, 1000, 6)
   </pre>
 
   <h3>7- Breve Descripción del Funcionamiento</h3>
