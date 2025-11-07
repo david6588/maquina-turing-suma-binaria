@@ -1,0 +1,187 @@
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+  margin: 0;
+  text-align: center;
+}
+
+header {
+  background: #5000ac;
+  color: white;
+  padding: 20px;
+}
+
+main {
+  padding: 20px;
+}
+
+.input-section {
+  margin: 20px 0;
+}
+
+input {
+  padding: 8px;
+  width: 220px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 8px 15px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 6px;
+  background-color: #5000ac;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #5000ac;
+}
+
+.tape-container {
+  margin-top: 30px;
+}
+
+.tape {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  background: white;
+}
+
+.active {
+  background: #22c55e;
+  color: white;
+}
+
+.status {
+  margin-top: 30px;
+  text-align: left;
+  max-width: 700px;
+  margin-inline: auto;
+  background: #eef2ff;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+pre {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: left;
+  overflow-x: auto;
+}
+
+footer {
+  margin-top: 30px;
+  padding: 10px;
+  background: #5000ac;
+  color: white;
+}
+
+/*cambios dee documentacion 
+
+*/
+
+/* --- SECCIÓN DE DOCUMENTACIÓN --- */
+.documentacion {
+  margin-top: 40px;
+  text-align: left;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 900px;
+  margin-inline: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.documentacion h2, 
+.documentacion h3 {
+  color: #5000ac;
+}
+
+.documentacion ul.listado {
+  list-style: square;
+  margin-left: 20px;
+}
+
+.tabla-transicion {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.tabla-transicion th, 
+.tabla-transicion td {
+  border: 1px solid #999;
+  padding: 6px;
+  text-align: center;
+}
+
+.tabla-transicion th {
+  background: #dbeafe;
+}
+
+code {
+  background: #f3f4f6;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* --- Grafo visual --- */
+.grafo-container {
+  text-align: center;
+  margin: 30px auto;
+  background: #f9fafb;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  width: 90%;
+  max-width: 620px;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+}
+
+.nota-grafo {
+  font-size: 0.9rem;
+  color: #374151;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* --- Animaciones de estados --- */
+.active-node {
+  stroke: #f59e0b !important;
+  stroke-width: 4 !important;
+  animation: pulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from { fill-opacity: 0.9; }
+  to { fill-opacity: 0.5; }
+}
+

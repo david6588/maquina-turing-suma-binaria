@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Máquina de Turing - Suma Binaria</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Máquina de Turing - Suma de Números Binarios</h1>
+    <p>Ingresa dos números binarios separados por un espacio, ejemplo: <strong>101 11</strong></p>
+  </header>
+
+  <main>
+    <section class="input-section">
+      <input id="input" type="text" placeholder="Ejemplo: 101 11">
+      <button id="runButton">Ejecutar</button>
+      <button id="stepButton" disabled>Paso a paso</button>
+      <button id="resetButton">Reiniciar</button>
+    </section>
+
+    <section class="tape-container">
+      <h2>Cinta</h2>
+      <div id="tape" class="tape"></div>
+    </section>
+
+    <section class="status">
+      <p><strong>Estado actual:</strong> <span id="state">q0</span></p>
+      <p><strong>Descripción instantánea (DI):</strong></p>
+      <pre id="instantaneousDesc">Esperando entrada...</pre>
+    </section>
+
+    <section class="output">
+      <h2>Resultado final:</h2>
+      <p id="result">-</p>
+    </section>
+  </main>
+
+  
+</section>
+<!-- 🔽 SECCIÓN DE DOCUMENTACIÓN -->
+<section class="documentacion">
+  <h2>📘 Descripción Formal del Autómata (Máquina de Turing)</h2>
+
+  <h3>1️⃣ Séptupla Formal</h3>
+  <p>
+    La Máquina de Turing se define como una séptupla:<br>
+    <strong>M = (Q, Σ, Γ, δ, q₀, q_accept, q_reject)</strong>
+  </p>
+  <ul class="listado">
+    <li><strong>Q</strong> = {q₀, q₁, q₂, q_accept}</li>
+    <li><strong>Σ</strong> = {0, 1, _} — Alfabeto de entrada (números binarios y espacio)</li>
+    <li><strong>Γ</strong> = {0, 1, _, □} — Alfabeto de la cinta</li>
+    <li><strong>q₀</strong> — Estado inicial (inicio de lectura)</li>
+    <li><strong>q₁</strong> — Estado de suma con acarreo</li>
+    <li><strong>q_accept</strong> — Estado de aceptación (resultado final mostrado)</li>
+    <li><strong>δ</strong> — Función de transición (ver tabla abajo)</li>
+  </ul>
+
+  <h3>2️⃣ Función de Transición δ</h3>
+  <table class="tabla-transicion">
+    <tr>
+      <th>Estado actual</th>
+      <th>Símbolo leído</th>
+      <th>Nuevo símbolo</th>
+      <th>Movimiento</th>
+      <th>Nuevo estado</th>
+    </tr>
+    <tr>
+      <td>q₀</td><td>0 o 1</td><td>Mismo símbolo</td><td>→</td><td>q₀</td>
+    </tr>
+    <tr>
+      <td>q₀</td><td>_</td><td>_</td><td>→</td><td>q₁ (pasa al segundo número)</td>
+    </tr>
+    <tr>
+      <td>q₁</td><td>0, 1</td><td>Resultado de la suma bit a bit</td><td>←</td><td>q₁</td>
+    </tr>
+    <tr>
+      <td>q₁</td><td>_</td><td>Resultado final escrito</td><td>→</td><td>q_accept</td>
+    </tr>
+  </table>
+
+  <h3>3️⃣ Lenguaje Aceptado</h3>
+  <p>
+    La máquina acepta cadenas de la forma:
+    <br>
+    <strong>L = { a b | a, b ∈ {0,1}⁺ }</strong><br>
+    donde <strong>a</strong> y <strong>b</strong> son números binarios separados por un espacio.<br>
+    Ejemplo: <code>101 11</code> ⇒ <code>1000</code>
+  </p>
+
+  <h3>4️⃣ Gramática (Representación equivalente)</h3>
+  <p>
+    G = (V, Σ, R, S), donde:<br>
+    <strong>V</strong> = {S, A, B} <br>
+    <strong>Σ</strong> = {0, 1, _} <br>
+    <strong>R</strong>:<br>
+    S → A _ B<br>
+    A → 0A | 1A | ε<br>
+    B → 0B | 1B | ε<br>
+    <br>
+    Esta gramática genera dos cadenas binarias separadas por un espacio.
+  </p>
+
+  <h3>5️⃣ Ejemplo de Descripción Instantánea (DI)</h3>
+  <pre>
+(q₀, 101_11, 1)
+(q₀, 101_11, 2)
+(q₁, 101_11, 4)
+(q_accept, 1000, 6)
+  </pre>
+
+  <h3>6️⃣ Breve Descripción del Funcionamiento</h3>
+  <p>
+    La máquina lee dos números binarios separados por un espacio. Avanza hacia la derecha en el estado q₀ 
+    hasta encontrar el símbolo "_" que separa los dos números. Cambia al estado q₁ para comenzar la suma 
+    desde el final de ambos números, llevando el acarreo si es necesario. Cuando la operación termina, 
+    entra en el estado <strong>q_accept</strong> y deja el resultado final en la cinta.
+  </p>
+
+  <h3>7️⃣ Ejemplo de Evaluación</h3>
+  <p>
+    Entrada: <code>101 11</code><br>
+    Resultado: <code>1000</code><br>
+    La cadena es <strong>aceptada</strong> por la máquina.
+  </p>
+</section>
+
+<h3>8️⃣ Grafo del Autómata</h3>
+<div class="grafo-container">
+  <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Estado q0 -->
+    <circle id="node-q0" cx="100" cy="100" r="35" fill="#93c5fd" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="100" y="105" text-anchor="middle" font-size="16" fill="#1e3a8a">q₀</text>
+
+    <!-- Estado q1 -->
+    <circle id="node-q1" cx="300" cy="100" r="35" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="300" y="105" text-anchor="middle" font-size="16" fill="#1e3a8a">q₁</text>
+
+    <!-- Estado q_accept -->
+    <circle id="node-q_accept" cx="500" cy="100" r="35" fill="#d1fae5" stroke="#065f46" stroke-width="2"/>
+    <text x="500" y="105" text-anchor="middle" font-size="16" fill="#065f46">q_accept</text>
+    <circle cx="500" cy="100" r="30" fill="none" stroke="#065f46" stroke-width="2"/>
+
+    <!-- Flechas -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#1e3a8a" />
+      </marker>
+    </defs>
+
+    <line x1="135" y1="100" x2="265" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
+    <text x="200" y="85" font-size="13" fill="#1e3a8a">_ → q₁</text>
+
+    <line x1="335" y1="100" x2="465" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
+    <text x="400" y="85" font-size="13" fill="#1e3a8a">carry=0 → q_accept</text>
+
+    <path d="M70,70 C40,40 160,40 130,70" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <text x="100" y="40" font-size="13" fill="#1e3a8a">0,1 → q₀</text>
+
+    <path d="M270,70 C240,40 360,40 330,70" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <text x="300" y="40" font-size="13" fill="#1e3a8a">suma ← q₁</text>
+
+    <line x1="20" y1="100" x2="65" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
+  </svg>
+</div>
+
+<p class="nota-grafo">
+  El grafo muestra la secuencia de estados de la máquina de Turing para la suma binaria.
+  Inicia en <strong>q₀</strong>, pasa a <strong>q₁</strong> durante la suma y finaliza en <strong>q_accept</strong>.
+</p>
+
+
+
+
+  <footer>
+    <p>Proyecto Autómatas y Lenguajes Formales — David Oswaldo Carrera Mérida</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
