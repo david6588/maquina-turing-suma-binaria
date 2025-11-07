@@ -102,13 +102,26 @@ function actualizarGrafo(estado) {
 function actualizarTabla(transicion) {
   const tabla = document.querySelector(".tabla-transicion");
   if (!tabla) return;
-  tabla.querySelectorAll("tr").forEach(tr => tr.style.background = "white");
-  if (transicion?.estado) {
-    const filas = [...tabla.querySelectorAll("tr")];
-    const fila = filas.find(tr => tr.textContent.includes(transicion.estado));
+
+  // Limpia todos los resaltados previos
+  tabla.querySelectorAll("tr").forEach(tr => {
+    tr.style.background = "white";
+    tr.style.transition = "background 0.3s";
+  });
+
+  // Determinar cuál fila resaltar según el estado actual
+  let filaIndex = -1;
+  if (state === "q0") filaIndex = 1;
+  else if (state === "q1") filaIndex = 2;
+  else if (state === "q_accept") filaIndex = 4;
+
+  // Si encontramos la fila correspondiente, la resaltamos
+  if (filaIndex > 0) {
+    const fila = tabla.querySelectorAll("tr")[filaIndex];
     if (fila) fila.style.background = "#dbeafe";
   }
 }
+
 
 // --- 🔹 Simulación paso a paso de la suma binaria ---
 function simularSuma(a, b) {
