@@ -185,3 +185,12 @@ svg {
   to { fill-opacity: 0.5; }
 }
 
+.tabla-transicion tr {
+  transition: background 0.3s ease;
+}
+
+.tabla-transicion tr:hover {
+  background: #f3f4f6;
+}
+
+
