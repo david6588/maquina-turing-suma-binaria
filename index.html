@@ -106,7 +106,7 @@
     <li><strong>Γ</strong> = {0, 1, _, □} — Alfabeto de la cinta</li>
     <li><strong>q₀</strong> — Estado inicial (inicio de lectura)</li>
     <li><strong>q₁</strong> — Estado de suma con acarreo</li>
-    <li><strong>q_accept</strong> — Estado de aceptación (resultado final mostrado)</li>
+    <li><strong>q2</strong> — Estado de aceptación (resultado final mostrado)</li>
     <li><strong>δ</strong> — Función de transición (ver tabla abajo)</li>
   </ul>
 
@@ -168,7 +168,7 @@
     La máquina lee dos números binarios separados por un espacio. Avanza hacia la derecha en el estado q₀ 
     hasta encontrar el símbolo "_" que separa los dos números. Cambia al estado q₁ para comenzar la suma 
     desde el final de ambos números, llevando el acarreo si es necesario. Cuando la operación termina, 
-    entra en el estado <strong>q_accept</strong> y deja el resultado final en la cinta.
+    entra en el estado <strong>q2</strong> y deja el resultado final en la cinta.
   </p>
 
   <h3>8- Ejemplo de Evaluación</h3>
