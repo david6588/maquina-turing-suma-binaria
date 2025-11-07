@@ -7,11 +7,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- encabezado de la pagina-->>
   <header>
     <h1>Máquina de Turing - Suma de Números Binarios</h1>
     <p>Ingresa dos números binarios separados por un espacio, ejemplo: <strong>101 11</strong></p>
   </header>
-
+  <!--  Seccion de soplicitud de datos-->
   <main>
     <section class="input-section">
       <input id="input" type="text" placeholder="Ejemplo: 101 111">
@@ -19,11 +21,13 @@
       <button id="stepButton" disabled>Paso a paso</button>
       <button id="resetButton">Reiniciar</button>
     </section>
-
+    <!-- Colocacion d3e la cinta -->
     <section class="tape-container">
       <h2>Cinta</h2>
       <div id="tape" class="tape"></div>
     </section>
+
+      <!-- Descricion de los estados -->
 
     <section class="status">
       <p><strong>Estado actual:</strong> <span id="state">q0</span></p>
@@ -31,13 +35,17 @@
       <pre id="instantaneousDesc">Esperando entrada...</pre>
     </section>
 
+    <!-- Resultado-->
+
     <section class="output">
       <h2>Resultado final:</h2>
       <p id="result">-</p>
     </section>
   </main>
 
-  <h3>8 Grafo del Autómata</h3>
+  <!-- Aca va el grafo -->
+
+  <h3>1- Grafo del Autómata</h3>
 <div class="grafo-container">
   <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
 
@@ -83,11 +91,11 @@
 </p>
   
 </section>
-<!-- 🔽 SECCIÓN DE DOCUMENTACIÓN -->
+<!--  DOCUMENTACIÓN -->
 <section class="documentacion">
   <h2>📘 Descripción Formal del Autómata (Máquina de Turing)</h2>
 
-  <h3>1 Séptupla Formal</h3>
+  <h3>2- Séptupla Formal</h3>
   <p>
     La Máquina de Turing se define como una séptupla:<br>
     <strong>M = (Q, Σ, Γ, δ, q₀, q_accept, q_reject)</strong>
@@ -102,7 +110,7 @@
     <li><strong>δ</strong> — Función de transición (ver tabla abajo)</li>
   </ul>
 
-  <h3>2 Función de Transición δ</h3>
+  <h3>3- Función de Transición δ</h3>
   <table class="tabla-transicion">
     <tr>
       <th>Estado actual</th>
@@ -125,7 +133,7 @@
     </tr>
   </table>
 
-  <h3>3 Lenguaje Aceptado</h3>
+  <h3>4- Lenguaje Aceptado</h3>
   <p>
     La máquina acepta cadenas de la forma:
     <br>
@@ -134,7 +142,7 @@
     Ejemplo: <code>101 11</code> ⇒ <code>1000</code>
   </p>
 
-  <h3>4 Gramática (Representación equivalente)</h3>
+  <h3>5- Gramática (Representación equivalente)</h3>
   <p>
     G = (V, Σ, R, S), donde:<br>
     <strong>V</strong> = {S, A, B} <br>
@@ -147,7 +155,7 @@
     Esta gramática genera dos cadenas binarias separadas por un espacio.
   </p>
 
-  <h3>5 Ejemplo de Descripción Instantánea (DI)</h3>
+  <h3>6- Ejemplo de Descripción Instantánea (DI)</h3>
   <pre>
 (q₀, 101_11, 1)
 (q₀, 101_11, 2)
@@ -155,7 +163,7 @@
 (q_accept, 1000, 6)
   </pre>
 
-  <h3>6 Breve Descripción del Funcionamiento</h3>
+  <h3>7- Breve Descripción del Funcionamiento</h3>
   <p>
     La máquina lee dos números binarios separados por un espacio. Avanza hacia la derecha en el estado q₀ 
     hasta encontrar el símbolo "_" que separa los dos números. Cambia al estado q₁ para comenzar la suma 
@@ -163,7 +171,7 @@
     entra en el estado <strong>q_accept</strong> y deja el resultado final en la cinta.
   </p>
 
-  <h3>7 Ejemplo de Evaluación</h3>
+  <h3>8- Ejemplo de Evaluación</h3>
   <p>
     Entrada: <code>101 11</code><br>
     Resultado: <code>1000</code><br>

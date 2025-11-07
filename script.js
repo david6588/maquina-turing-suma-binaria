@@ -87,7 +87,7 @@ function mostrarDI(paso) {
   diPre.scrollTop = diPre.scrollHeight;
 }
 
-// --- 🔶 ANIMACIÓN DEL GRAFO ---
+//  ANIMACIÓN 
 function actualizarGrafo(estado) {
   ["q0", "q1", "q_accept"].forEach(id => {
     const node = document.getElementById(`node-${id}`);
@@ -98,12 +98,12 @@ function actualizarGrafo(estado) {
   if (activo) activo.classList.add("active-node");
 }
 
-// --- 🔶 ACTUALIZACIÓN DE TABLA DE TRANSICIÓN ---
+// TABLA DE TRANSICIÓN
 function actualizarTabla(transicion) {
   const tabla = document.querySelector(".tabla-transicion");
   if (!tabla) return;
 
-  // Limpia todos los resaltados previos
+  
   tabla.querySelectorAll("tr").forEach(tr => {
     tr.style.background = "white";
     tr.style.transition = "background 0.3s";
@@ -115,7 +115,7 @@ function actualizarTabla(transicion) {
   else if (state === "q1") filaIndex = 2;
   else if (state === "q_accept") filaIndex = 4;
 
-  // Si encontramos la fila correspondiente, la resaltamos
+ 
   if (filaIndex > 0) {
     const fila = tabla.querySelectorAll("tr")[filaIndex];
     if (fila) fila.style.background = "#dbeafe";
@@ -123,7 +123,7 @@ function actualizarTabla(transicion) {
 }
 
 
-// --- 🔹 Simulación paso a paso de la suma binaria ---
+//paso a paso de la suma binaria 
 function simularSuma(a, b) {
   let i = a.length - 1;
   let j = b.length - 1;
