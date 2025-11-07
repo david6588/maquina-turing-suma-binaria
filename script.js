@@ -51,7 +51,7 @@ function siguientePaso() {
     document.getElementById("stepButton").disabled = true;
     actualizarGrafo("q_accept");
     resultP.textContent = steps.at(-1).resultadoFinal;
-    diPre.textContent += "\n✅ La máquina ha finalizado.";
+    diPre.textContent += "\n La máquina ha finalizado.";
   }
 }
 
