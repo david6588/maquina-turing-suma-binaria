@@ -37,6 +37,50 @@
     </section>
   </main>
 
+  <h3>8 Grafo del Autómata</h3>
+<div class="grafo-container">
+  <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Estado q0 -->
+    <circle id="node-q0" cx="100" cy="100" r="35" fill="#93c5fd" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="100" y="105" text-anchor="middle" font-size="16" fill="#1e3a8a">q₀</text>
+
+    <!-- Estado q1 -->
+    <circle id="node-q1" cx="300" cy="100" r="35" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="300" y="105" text-anchor="middle" font-size="16" fill="#1e3a8a">q₁</text>
+
+    <!-- Estado q_accept -->
+    <circle id="node-q_accept" cx="500" cy="100" r="35" fill="#d1fae5" stroke="#065f46" stroke-width="2"/>
+    <text x="500" y="105" text-anchor="middle" font-size="16" fill="#065f46">q_accept</text>
+    <circle cx="500" cy="100" r="30" fill="none" stroke="#065f46" stroke-width="2"/>
+
+    <!-- Flechas -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#1e3a8a" />
+      </marker>
+    </defs>
+
+    <line x1="135" y1="100" x2="265" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
+    <text x="200" y="85" font-size="13" fill="#1e3a8a">_ → q₁</text>
+
+    <line x1="335" y1="100" x2="465" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
+    <text x="400" y="85" font-size="13" fill="#1e3a8a">carry=0 → q_accept</text>
+
+    <path d="M70,70 C40,40 160,40 130,70" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <text x="100" y="40" font-size="13" fill="#1e3a8a">0,1 → q₀</text>
+
+    <path d="M270,70 C240,40 360,40 330,70" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <text x="300" y="40" font-size="13" fill="#1e3a8a">suma ← q₁</text>
+
+    <line x1="20" y1="100" x2="65" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
+  </svg>
+</div>
+
+<p class="nota-grafo">
+  El grafo muestra la secuencia de estados de la máquina de Turing para la suma binaria.
+  Inicia en <strong>q₀</strong>, pasa a <strong>q₁</strong> durante la suma y finaliza en <strong>q_accept</strong>.
+</p>
   
 </section>
 <!-- 🔽 SECCIÓN DE DOCUMENTACIÓN -->
@@ -127,50 +171,7 @@
   </p>
 </section>
 
-<h3>8 Grafo del Autómata</h3>
-<div class="grafo-container">
-  <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
 
-    <!-- Estado q0 -->
-    <circle id="node-q0" cx="100" cy="100" r="35" fill="#93c5fd" stroke="#1e3a8a" stroke-width="2"/>
-    <text x="100" y="105" text-anchor="middle" font-size="16" fill="#1e3a8a">q₀</text>
-
-    <!-- Estado q1 -->
-    <circle id="node-q1" cx="300" cy="100" r="35" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="2"/>
-    <text x="300" y="105" text-anchor="middle" font-size="16" fill="#1e3a8a">q₁</text>
-
-    <!-- Estado q_accept -->
-    <circle id="node-q_accept" cx="500" cy="100" r="35" fill="#d1fae5" stroke="#065f46" stroke-width="2"/>
-    <text x="500" y="105" text-anchor="middle" font-size="16" fill="#065f46">q_accept</text>
-    <circle cx="500" cy="100" r="30" fill="none" stroke="#065f46" stroke-width="2"/>
-
-    <!-- Flechas -->
-    <defs>
-      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-        <polygon points="0 0, 10 3.5, 0 7" fill="#1e3a8a" />
-      </marker>
-    </defs>
-
-    <line x1="135" y1="100" x2="265" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
-    <text x="200" y="85" font-size="13" fill="#1e3a8a">_ → q₁</text>
-
-    <line x1="335" y1="100" x2="465" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
-    <text x="400" y="85" font-size="13" fill="#1e3a8a">carry=0 → q_accept</text>
-
-    <path d="M70,70 C40,40 160,40 130,70" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
-    <text x="100" y="40" font-size="13" fill="#1e3a8a">0,1 → q₀</text>
-
-    <path d="M270,70 C240,40 360,40 330,70" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
-    <text x="300" y="40" font-size="13" fill="#1e3a8a">suma ← q₁</text>
-
-    <line x1="20" y1="100" x2="65" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
-  </svg>
-</div>
-
-<p class="nota-grafo">
-  El grafo muestra la secuencia de estados de la máquina de Turing para la suma binaria.
-  Inicia en <strong>q₀</strong>, pasa a <strong>q₁</strong> durante la suma y finaliza en <strong>q_accept</strong>.
-</p>
 
 
 
