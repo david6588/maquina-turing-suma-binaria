@@ -14,7 +14,7 @@
 
   <main>
     <section class="input-section">
-      <input id="input" type="text" placeholder="Ejemplo: 101 11">
+      <input id="input" type="text" placeholder="Ejemplo: 101 111">
       <button id="runButton">Ejecutar</button>
       <button id="stepButton" disabled>Paso a paso</button>
       <button id="resetButton">Reiniciar</button>
@@ -51,7 +51,7 @@
 
     <!-- Estado q_accept -->
     <circle id="node-q_accept" cx="500" cy="100" r="35" fill="#d1fae5" stroke="#065f46" stroke-width="2"/>
-    <text x="500" y="105" text-anchor="middle" font-size="16" fill="#065f46">q_accept</text>
+    <text x="500" y="105" text-anchor="middle" font-size="16" fill="#065f46">q2</text>
     <circle cx="500" cy="100" r="30" fill="none" stroke="#065f46" stroke-width="2"/>
 
     <!-- Flechas -->
@@ -61,11 +61,11 @@
       </marker>
     </defs>
 
-    <line x1="135" y1="100" x2="265" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
+    <line x1="135" y1="150" x2="265" y2="150" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
     <text x="200" y="85" font-size="13" fill="#1e3a8a">_ → q₁</text>
 
     <line x1="335" y1="100" x2="465" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
-    <text x="400" y="85" font-size="13" fill="#1e3a8a">carry=0 → q_accept</text>
+    <text x="400" y="85" font-size="13" fill="#1e3a8a">carry=0 → q2</text>
 
     <path d="M70,70 C40,40 160,40 130,70" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
     <text x="100" y="40" font-size="13" fill="#1e3a8a">0,1 → q₀</text>
@@ -79,7 +79,7 @@
 
 <p class="nota-grafo">
   El grafo muestra la secuencia de estados de la máquina de Turing para la suma binaria.
-  Inicia en <strong>q₀</strong>, pasa a <strong>q₁</strong> durante la suma y finaliza en <strong>q_accept</strong>.
+  Inicia en <strong>q₀</strong>, pasa a <strong>q₁</strong> durante la suma y finaliza en <strong>q2</strong>.
 </p>
   
 </section>
@@ -177,7 +177,7 @@
 
 
   <footer>
-    <p>Proyecto Autómatas y Lenguajes Formales — David Oswaldo Carrera Mérida</p>
+    <p>Proyecto Autómatas y Lenguajes Formales — David Oswaldo Carrera Mérida - 0902 21 3021 </p>
   </footer>
 
   <script src="script.js"></script>
