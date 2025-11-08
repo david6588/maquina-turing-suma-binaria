@@ -134,17 +134,32 @@ function mostrarDI(paso) {
 
 // ---------------------- GRAFO ----------------------
 function actualizarGrafo(estado) {
-  ["q0", "q1", "q_accept"].forEach(id => {
+  const nodos = ["q0", "q1", "q2"];
+  nodos.forEach(id => {
     const node = document.getElementById(`node-${id}`);
     if (!node) return;
-    node.classList.remove("active-node");
+    node.classList.remove("active-node", "accept-highlight");
   });
 
-  if (estado === "reset") return;
-
   const activo = document.getElementById(`node-${estado}`);
-  if (activo) activo.classList.add("active-node");
+  if (!activo) return;
+
+  // Activar color del estado actual
+  activo.classList.add("active-node");
+
+  // Si es el estado de aceptación, aplicar animación de parpadeo
+  if (estado === "q_accept" || estado === "q2") {
+    activo.classList.remove("active-node");
+    activo.classList.add("accept-highlight");
+
+    // Detener el parpadeo después de 3 segundos
+    setTimeout(() => {
+      activo.classList.remove("accept-highlight");
+      activo.classList.add("active-node");
+    }, 3000);
+  }
 }
+
 
 // ---------------------- TABLA DE TRANSICIÓN ----------------------
 function actualizarTabla(transicion) {

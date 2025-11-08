@@ -271,3 +271,14 @@ footer {
   white-space: pre-wrap;
   font-family: monospace;
 }
+
+/* --- ANIMACIÓN DE FINALIZACIÓN --- */
+@keyframes blinkAccept {
+  0% { fill: #d1fae5; }
+  50% { fill: #22c55e; }
+  100% { fill: #d1fae5; }
+}
+
+.accept-highlight {
+  animation: blinkAccept 0.6s ease-in-out infinite;
+}
