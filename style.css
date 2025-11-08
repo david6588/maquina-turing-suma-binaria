@@ -10,7 +10,7 @@ body {
 }
 
 header {
-  background-color: #1e3a8a;
+  background-color: #00d4c3;
   color: white;
   text-align: center;
   padding: 1.5rem;
@@ -39,13 +39,13 @@ main {
   width: 260px;
   padding: 8px;
   margin-right: 10px;
-  border: 2px solid #3b82f6;
+  border: 2px solid #7bf3e9;
   border-radius: 6px;
   font-size: 16px;
 }
 
 .input-section button {
-  background-color: #3b82f6;
+  background-color: #61d8ce;
   color: white;
   border: none;
   padding: 8px 14px;
@@ -57,7 +57,7 @@ main {
 }
 
 .input-section button:hover {
-  background-color: #2563eb;
+  background-color: #00d4c3;
 }
 
 #resetButton {
@@ -100,7 +100,7 @@ main {
   width: 35px;
   height: 35px;
   line-height: 35px;
-  border: 1.5px solid #3b82f6;
+  border: 1.5px solid #70fff3;
   margin: 2px;
   text-align: center;
   border-radius: 4px;
@@ -110,7 +110,7 @@ main {
 }
 
 .cell.active {
-  background-color: #3b82f6;
+  background-color: #00635a;
   color: white;
   transform: scale(1.1);
 }
@@ -135,7 +135,7 @@ main {
   background: #f3f4f6;
   border-radius: 8px;
   padding: 1rem;
-  border-left: 5px solid #2563eb;
+  border-left: 5px solid #00d4c3;
 }
 
 #instantaneousDesc {
@@ -215,7 +215,7 @@ main {
 }
 
 .tabla-transicion th {
-  background-color: #1e3a8a;
+  background-color: #00d4c3;
   color: white;
   padding: 8px;
 }
@@ -242,7 +242,7 @@ main {
 }
 
 .documentacion h2 {
-  color: #1e3a8a;
+  color: #00d4c3;
 }
 
 .listado li {
@@ -253,7 +253,7 @@ main {
    FOOTER
 ========================= */
 footer {
-  background-color: #1e3a8a;
+  background-color: #00d4c3;
   color: white;
   text-align: center;
   padding: 1rem;
