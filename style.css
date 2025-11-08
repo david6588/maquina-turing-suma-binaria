@@ -282,3 +282,16 @@ footer {
 .accept-highlight {
   animation: blinkAccept 0.6s ease-in-out infinite;
 }
+
+
+/* --- ANIMACIÓN DE PARPADEO PARA EL RESULTADO FINAL --- */
+@keyframes blinkResult {
+  0% { color: #22c55e; transform: scale(1); }
+  50% { color: #16a34a; transform: scale(1.1); }
+  100% { color: #22c55e; transform: scale(1); }
+}
+
+.result-highlight {
+  animation: blinkResult 0.8s ease-in-out 3; /* 3 repeticiones */
+  font-weight: bold;
+}

@@ -66,11 +66,21 @@ function siguientePaso() {
 
     currentStep++;
   } else {
-    document.getElementById("stepButton").disabled = true;
-    actualizarGrafo("q_accept");
-    resultP.textContent = steps.at(-1).resultadoFinal;
-    diPre.textContent += "\n✅ La máquina ha finalizado.";
-  }
+  document.getElementById("stepButton").disabled = true;
+  actualizarGrafo("q2");
+  const resultadoFinal = steps.at(-1).resultadoFinal;
+  resultP.textContent = resultadoFinal;
+  diPre.textContent += "\n✅ La máquina ha finalizado.";
+
+  // Aplicar parpadeo al resultado final
+  resultP.classList.add("result-highlight");
+
+  // Quitar animación después de 3 segundos (para reinicios posteriores)
+  setTimeout(() => {
+    resultP.classList.remove("result-highlight");
+  }, 3000);
+}
+
 }
 
 // ---------------------- REINICIAR ----------------------
