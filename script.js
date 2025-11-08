@@ -206,7 +206,7 @@ function toggleAutoSim() {
   if (!autoRunning) {
     // Iniciar la simulación automática
     autoRunning = true;
-    btn.textContent = "⏸️ Pausar simulación";
+    btn.textContent = "⏸ Pausar simulación";
 
     autoInterval = setInterval(() => {
       if (currentStep < steps.length) {
