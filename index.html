@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Encabezado de la página -->
+  
   <header>
     <h1>Máquina de Turing - Suma de Números Binarios</h1>
     <p>Ingresa dos números binarios separados por un espacio, ejemplo: <strong>101 11</strong></p>
@@ -184,6 +184,53 @@
       </p>
     </section>
   </main>
+
+
+<div class="grafo-container">
+  <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Grafo Máquina de Turing - Suma Binaria">
+    <defs>
+      <!-- Flechas -->
+      <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+        <polygon points="0,0 10,4 0,8" fill="#1e3a8a" />
+      </marker>
+    </defs>
+
+    <!-- Etiqueta inicio -->
+    <text x="10" y="100" font-size="12" fill="#1e3a8a">Inicio</text>
+    <line x1="25" y1="95" x2="60" y2="95" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
+
+    <!-- Estado q0 -->
+    <circle id="node-q0" cx="120" cy="100" r="35" fill="#93c5fd" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="120" y="105" text-anchor="middle" font-size="16" fill="#1e3a8a">q₀</text>
+
+    <!-- Bucle q0 -->
+    <path d="M85,65 C70,30 170,30 155,65" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <text x="120" y="35" font-size="13" fill="#1e3a8a">0,1 / →</text>
+
+    <!-- Flecha q0 -> q1 -->
+    <line x1="155" y1="100" x2="285" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
+    <text x="220" y="80" font-size="13" fill="#1e3a8a">_ / → , q₁</text>
+
+    <!-- Estado q1 -->
+    <circle id="node-q1" cx="320" cy="100" r="35" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="320" y="105" text-anchor="middle" font-size="16" fill="#1e3a8a">q₁</text>
+
+    <!-- Bucle q1 -->
+    <path d="M285,65 C270,30 370,30 355,65" stroke="#1e3a8a" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <text x="320" y="35" font-size="13" fill="#1e3a8a">sum / ←</text>
+
+    <!-- Flecha q1 -> q_accept -->
+    <line x1="355" y1="100" x2="505" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)" />
+    <text x="430" y="120" font-size="13" fill="#1e3a8a">_ / → , q₂</text>
+
+    <!-- Estado q_accept -->
+    <circle id="node-q_accept" cx="540" cy="100" r="35" fill="#d1fae5" stroke="#065f46" stroke-width="2"/>
+    <circle cx="540" cy="100" r="30" fill="none" stroke="#065f46" stroke-width="2"/>
+    <text x="540" y="105" text-anchor="middle" font-size="16" fill="#065f46">q₂</text>
+  </svg>
+</div>
+
+  
 
   <footer>
     <p>Proyecto Autómatas y Lenguajes Formales — David Oswaldo Carrera Mérida - 0902 21 3021</p>

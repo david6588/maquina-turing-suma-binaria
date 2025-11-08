@@ -7,7 +7,7 @@ let currentStep = 0;
 let autoInterval = null;
 let autoRunning = false;
 
-// Referencias a elementos del DOM
+
 const tapeDiv = document.getElementById("tape");
 const stateSpan = document.getElementById("state");
 const diPre = document.getElementById("instantaneousDesc");
@@ -20,7 +20,7 @@ document.getElementById("stepButton").addEventListener("click", siguientePaso);
 document.getElementById("resetButton").addEventListener("click", reiniciar);
 document.getElementById("autoButton").addEventListener("click", toggleAutoSim);
 
-// ---------------------- INICIAR ----------------------
+
 function iniciar() {
   const input = document.getElementById("input").value.trim();
   if (!input.includes(" ")) {
@@ -49,7 +49,7 @@ function iniciar() {
   document.getElementById("autoButton").disabled = false;
 }
 
-// ---------------------- SIGUIENTE PASO ----------------------
+
 function siguientePaso() {
   if (currentStep < steps.length) {
     const paso = steps[currentStep];
@@ -72,10 +72,10 @@ function siguientePaso() {
   resultP.textContent = resultadoFinal;
   diPre.textContent += "\n✅ La máquina ha finalizado.";
 
-  // Aplicar parpadeo al resultado final
+  
   resultP.classList.add("result-highlight");
 
-  // Quitar animación después de 3 segundos (para reinicios posteriores)
+  
   setTimeout(() => {
     resultP.classList.remove("result-highlight");
   }, 3000);
@@ -83,7 +83,7 @@ function siguientePaso() {
 
 }
 
-// ---------------------- REINICIAR ----------------------
+
 function reiniciar(resetInput = true) {
   tape = [];
   head = 0;
@@ -99,7 +99,7 @@ function reiniciar(resetInput = true) {
   if (resetInput) document.getElementById("input").value = "";
 }
 
-// ---------------------- RENDERIZAR CINTA ----------------------
+
 function renderTape() {
   tapeDiv.innerHTML = "";
 
@@ -116,7 +116,7 @@ function renderTape() {
       cell.textContent = symbol === "_" ? "□" : symbol;
     }
 
-    // Resalta la posición del cabezal
+   
     if (i === head) {
       cell.classList.add("active");
     }
@@ -127,7 +127,7 @@ function renderTape() {
   stateSpan.textContent = state;
 }
 
-// ---------------------- MOSTRAR DESCRIPCIÓN INSTANTÁNEA ----------------------
+
 function mostrarDI(paso) {
   const di = `(${paso.estado}, ${paso.cinta.join("")}, ${paso.cabezal})`;
   diPre.textContent += `\n${di}`;
@@ -142,7 +142,7 @@ function mostrarDI(paso) {
 
 }
 
-// ---------------------- GRAFO ----------------------
+
 function actualizarGrafo(estado) {
   const nodos = ["q0", "q1", "q2"];
   nodos.forEach(id => {
@@ -154,15 +154,15 @@ function actualizarGrafo(estado) {
   const activo = document.getElementById(`node-${estado}`);
   if (!activo) return;
 
-  // Activar color del estado actual
+  
   activo.classList.add("active-node");
 
-  // Si es el estado de aceptación, aplicar animación de parpadeo
+  
   if (estado === "q_accept" || estado === "q2") {
     activo.classList.remove("active-node");
     activo.classList.add("accept-highlight");
 
-    // Detener el parpadeo después de 3 segundos
+    
     setTimeout(() => {
       activo.classList.remove("accept-highlight");
       activo.classList.add("active-node");
@@ -171,31 +171,31 @@ function actualizarGrafo(estado) {
 }
 
 
-// ---------------------- TABLA DE TRANSICIÓN ----------------------
+
 function actualizarTabla(transicion) {
   const tabla = document.querySelector(".tabla-transicion");
   if (!tabla) return;
 
-  // Limpia todos los resaltados previos
+  
   tabla.querySelectorAll("tr").forEach(tr => {
     tr.style.background = "white";
     tr.style.transition = "background 0.3s";
   });
 
-  // Determinar cuál fila resaltar según el estado actual
+  
   let filaIndex = -1;
   if (state === "q0") filaIndex = 1;
   else if (state === "q1") filaIndex = 2;
   else if (state === "q_accept") filaIndex = 4;
 
-  // Si encontramos la fila correspondiente, la resaltamos
+ 
   if (filaIndex > 0) {
     const fila = tabla.querySelectorAll("tr")[filaIndex];
     if (fila) fila.style.background = "#dbeafe";
   }
 }
 
-// ---------------------- SIMULAR SUMA ----------------------
+
 function simularSuma(a, b) {
   let i = a.length - 1;
   let j = b.length - 1;
@@ -203,9 +203,9 @@ function simularSuma(a, b) {
   let resultado = "";
   let pasos = [];
 
-  // Construimos la cinta visual completa
+
   let cinta = ["_", ...a.split(""), "_", ...b.split(""), "_"];
-  let cabezal = cinta.length - 2;  // comienza desde el final
+  let cabezal = cinta.length - 2;  
 
   while (i >= 0 || j >= 0 || carry) {
     const bitA = i >= 0 ? parseInt(a[i--]) : 0;
@@ -217,7 +217,7 @@ function simularSuma(a, b) {
     const textoOperacion = `${bitA} + ${bitB} + ${carry ? "1(carry)" : "0"} = ${bitResultado} ${carry ? "(carry 1)" : ""}`;
 
 
-    // Simular visualmente el movimiento de la cinta
+    
     const cintaPaso = [...cinta];
     if (cabezal >= 0 && cabezal < cintaPaso.length) {
       cintaPaso[cabezal] = `(${cintaPaso[cabezal]})`;
@@ -232,7 +232,7 @@ function simularSuma(a, b) {
       transicion: { estado: carry ? "q1" : "q0", simbolo: bitA }
     });
 
-    cabezal--; // mueve el cabezal hacia la izquierda
+    cabezal--; 
   }
 
   pasos.push({
@@ -246,14 +246,14 @@ function simularSuma(a, b) {
   return { pasos, resultado };
 }
 
-// ---------------------- SIMULACIÓN AUTOMÁTICA ----------------------
+
 function toggleAutoSim() {
   const btn = document.getElementById("autoButton");
 
   if (!autoRunning) {
-    // Iniciar la simulación automática
+    
     autoRunning = true;
-    btn.textContent = "⏸️ Pausar simulación";
+    btn.textContent = "⏸ Pausar simulación";
 
     autoInterval = setInterval(() => {
       if (currentStep < steps.length) {
@@ -263,11 +263,11 @@ function toggleAutoSim() {
         autoRunning = false;
         btn.textContent = "Simular automáticamente";
       }
-    }, 500); // Avanza cada 0.5 segundos
+    }, 500); 
   } else {
-    // Pausar la simulación
+    
     clearInterval(autoInterval);
     autoRunning = false;
-    btn.textContent = "▶️ Reanudar simulación";
+    btn.textContent = "▶ Reanudar simulación";
   }
 }
