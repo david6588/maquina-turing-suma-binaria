@@ -49,7 +49,7 @@ function siguientePaso() {
     currentStep++;
   } else {
     document.getElementById("stepButton").disabled = true;
-    actualizarGrafo("q_accept");
+    actualizarGrafo("q2");
     resultP.textContent = steps.at(-1).resultadoFinal;
     diPre.textContent += "\n La máquina ha finalizado.";
   }
@@ -89,7 +89,7 @@ function mostrarDI(paso) {
 
 //  ANIMACIÓN 
 function actualizarGrafo(estado) {
-  ["q0", "q1", "q_accept"].forEach(id => {
+  ["q0", "q1", "q2"].forEach(id => {
     const node = document.getElementById(`node-${id}`);
     if (!node) return;
     node.classList.remove("active-node");
@@ -113,7 +113,7 @@ function actualizarTabla(transicion) {
   let filaIndex = -1;
   if (state === "q0") filaIndex = 1;
   else if (state === "q1") filaIndex = 2;
-  else if (state === "q_accept") filaIndex = 4;
+  else if (state === "q2") filaIndex = 4;
 
  
   if (filaIndex > 0) {
@@ -130,8 +130,11 @@ function simularSuma(a, b) {
   let carry = 0;
   let resultado = "";
   let pasos = [];
-  let cabezal = 1;
+
+  // Construimos la cinta visual completa
   let cinta = ["_", ...a.split(""), "_", ...b.split(""), "_"];
+  let posSeparador = a.length + 1; // posición del "_"
+  let cabezal = cinta.length - 2;  // comienza desde el final
 
   while (i >= 0 || j >= 0 || carry) {
     const bitA = i >= 0 ? parseInt(a[i--]) : 0;
@@ -141,21 +144,30 @@ function simularSuma(a, b) {
     carry = Math.floor(suma / 2);
     resultado = bitResultado + resultado;
 
+    // Simular visualmente el movimiento de la cinta
+    const cintaPaso = [...cinta];
+    if (cabezal >= 0 && cabezal < cintaPaso.length) {
+      // Marcamos la celda leída o escrita con paréntesis
+      cintaPaso[cabezal] = `(${cintaPaso[cabezal]})`;
+    }
+
     pasos.push({
       estado: carry ? "q1" : "q0",
-      cinta: [...cinta],
-      cabezal: cabezal++,
+      cinta: [...cintaPaso],
+      cabezal,
       resultadoFinal: "",
       transicion: { estado: carry ? "q1" : "q0", simbolo: bitA }
     });
+
+    cabezal--; // mueve el cabezal hacia la izquierda
   }
 
   pasos.push({
-    estado: "q_accept",
+    estado: "q2",
     cinta: [...cinta],
     cabezal,
     resultadoFinal: resultado,
-    transicion: { estado: "q_accept" }
+    transicion: { estado: "q2" }
   });
 
   return { pasos, resultado };
