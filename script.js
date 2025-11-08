@@ -43,6 +43,10 @@ function siguientePaso() {
     state = paso.estado;
     head = paso.cabezal;
     renderTape();
+
+    // Limpiar marcas visuales del arreglo tape
+    tape = tape.map(sym => sym.replace(/[()]/g, ""));
+
     mostrarDI(paso);
     actualizarGrafo(state);
     actualizarTabla(paso.transicion);
@@ -71,13 +75,28 @@ function reiniciar(resetInput = true) {
 
 function renderTape() {
   tapeDiv.innerHTML = "";
+
   tape.forEach((symbol, i) => {
     const cell = document.createElement("div");
     cell.classList.add("cell");
-    cell.textContent = symbol === "_" ? "□" : symbol;
-    if (i === head) cell.classList.add("active");
+
+    // Si el símbolo está marcado con paréntesis (ej. "(1)")
+    if (/^\(.*\)$/.test(symbol)) {
+      const cleanSymbol = symbol.replace(/[()]/g, "");
+      cell.textContent = cleanSymbol;
+      cell.classList.add("cell-marked");
+    } else {
+      cell.textContent = symbol === "_" ? "□" : symbol;
+    }
+
+    // Resalta la posición del cabezal
+    if (i === head) {
+      cell.classList.add("active");
+    }
+
     tapeDiv.appendChild(cell);
   });
+
   stateSpan.textContent = state;
 }
 

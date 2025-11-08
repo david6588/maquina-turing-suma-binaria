@@ -185,5 +185,17 @@ svg {
   to { fill-opacity: 0.5; }
 }
 
+/* --- Celda en proceso (leída/escrita) --- */
+.cell-marked {
+  background-color: #f59e0b !important;
+  color: white;
+  border: 2px solid #b45309;
+  animation: blink 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.6; }
+}
 
 
