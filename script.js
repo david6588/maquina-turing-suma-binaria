@@ -4,6 +4,10 @@ let state = "q0";
 let steps = [];
 let currentStep = 0;
 
+let autoInterval = null;
+let autoRunning = false;
+
+
 const tapeDiv = document.getElementById("tape");
 const stateSpan = document.getElementById("state");
 const diPre = document.getElementById("instantaneousDesc");
@@ -12,6 +16,8 @@ const resultP = document.getElementById("result");
 document.getElementById("runButton").addEventListener("click", iniciar);
 document.getElementById("stepButton").addEventListener("click", siguientePaso);
 document.getElementById("resetButton").addEventListener("click", reiniciar);
+document.getElementById("autoButton").addEventListener("click", toggleAutoSim);
+
 
 function iniciar() {
   const input = document.getElementById("input").value.trim();
@@ -35,6 +41,8 @@ function iniciar() {
   steps = suma.pasos;
   diPre.textContent = "Máquina iniciada...\nPresiona 'Paso a paso' para comenzar.";
   document.getElementById("stepButton").disabled = false;
+  document.getElementById("autoButton").disabled = false;
+
 }
 
 function siguientePaso() {
@@ -190,4 +198,29 @@ function simularSuma(a, b) {
   });
 
   return { pasos, resultado };
+}
+
+function toggleAutoSim() {
+  const btn = document.getElementById("autoButton");
+
+  if (!autoRunning) {
+    // Iniciar la simulación automática
+    autoRunning = true;
+    btn.textContent = "⏸️ Pausar simulación";
+
+    autoInterval = setInterval(() => {
+      if (currentStep < steps.length) {
+        siguientePaso();
+      } else {
+        clearInterval(autoInterval);
+        autoRunning = false;
+        btn.textContent = "Simular automáticamente";
+      }
+    }, 500); // Avanza cada 0.5 segundos
+  } else {
+    // Pausar la simulación
+    clearInterval(autoInterval);
+    autoRunning = false;
+    btn.textContent = "▶️ Reanudar simulación";
+  }
 }

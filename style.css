@@ -198,4 +198,11 @@ svg {
   to { opacity: 0.6; }
 }
 
+#autoButton {
+  background-color: #16a34a;
+}
+
+#autoButton:hover {
+  background-color: #15803d;
+}
 
