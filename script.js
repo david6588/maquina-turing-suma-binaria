@@ -12,6 +12,8 @@ const tapeDiv = document.getElementById("tape");
 const stateSpan = document.getElementById("state");
 const diPre = document.getElementById("instantaneousDesc");
 const resultP = document.getElementById("result");
+const mathPre = document.getElementById("mathDesc");
+
 
 document.getElementById("runButton").addEventListener("click", iniciar);
 document.getElementById("stepButton").addEventListener("click", siguientePaso);
@@ -120,6 +122,14 @@ function mostrarDI(paso) {
   const di = `(${paso.estado}, ${paso.cinta.join("")}, ${paso.cabezal})`;
   diPre.textContent += `\n${di}`;
   diPre.scrollTop = diPre.scrollHeight;
+
+ if (paso.operacion) {
+    mathPre.textContent += `\n${paso.operacion}`;
+    mathPre.scrollTop = mathPre.scrollHeight;
+  }
+
+
+
 }
 
 // ---------------------- GRAFO ----------------------
@@ -179,6 +189,8 @@ function simularSuma(a, b) {
     const bitResultado = suma % 2;
     carry = Math.floor(suma / 2);
     resultado = bitResultado + resultado;
+    const textoOperacion = `${bitA} + ${bitB} + ${carry ? "1(carry)" : "0"} = ${bitResultado} ${carry ? "(carry 1)" : ""}`;
+
 
     // Simular visualmente el movimiento de la cinta
     const cintaPaso = [...cinta];
@@ -191,6 +203,7 @@ function simularSuma(a, b) {
       cinta: [...cintaPaso],
       cabezal,
       resultadoFinal: "",
+       operacion: textoOperacion,
       transicion: { estado: carry ? "q1" : "q0", simbolo: bitA }
     });
 

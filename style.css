@@ -260,3 +260,14 @@ footer {
   margin-top: 30px;
   font-size: 14px;
 }
+
+#mathDesc {
+  background: white;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  height: 130px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
