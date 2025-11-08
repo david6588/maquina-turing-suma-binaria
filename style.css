@@ -1,201 +1,71 @@
+/* =========================
+   ESTILO GENERAL
+========================= */
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background-color: #1e0046;
-  color: #7e7e7e;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  text-align: center;
+  padding: 0;
+  background-color: #f9fafb;
+  color: #111827;
 }
 
 header {
-  background: #5000ac;
+  background-color: #1e3a8a;
   color: white;
-  padding: 20px;
+  text-align: center;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  margin-bottom: 0.5rem;
 }
 
 main {
-  padding: 20px;
-}
-
-.input-section {
-  margin: 20px 0;
-}
-
-input {
-  padding: 8px;
-  width: 220px;
-  font-size: 1rem;
-}
-
-button {
-  padding: 8px 15px;
-  margin: 0 5px;
-  border: none;
-  border-radius: 6px;
-  background-color: #5000ac;
-  color: white;
-  cursor: pointer;
-}
-
-button:disabled {
-  background-color: #94a3b8;
-  cursor: not-allowed;
-}
-
-button:hover:not(:disabled) {
-  background-color: #5000ac;
-}
-
-.tape-container {
-  margin-top: 30px;
-}
-
-.tape {
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.cell {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  background: white;
-}
-
-.active {
-  background: #22c55e;
-  color: white;
-}
-
-.status {
-  margin-top: 30px;
-  text-align: left;
-  max-width: 700px;
-  margin-inline: auto;
-  background: #eef2ff;
-  border-radius: 10px;
-  padding: 15px;
-}
-
-pre {
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 6px;
-  text-align: left;
-  overflow-x: auto;
-}
-
-footer {
-  margin-top: 30px;
-  padding: 10px;
-  background: #5000ac;
-  color: white;
-}
-
-/*cambios dee documentacion 
-
-*/
-
-/* --- SECCIÓN DE DOCUMENTACIÓN --- */
-.documentacion {
-  margin-top: 40px;
-  text-align: left;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
+  padding: 1.5rem;
   max-width: 900px;
-  margin-inline: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 }
 
-.documentacion h2, 
-.documentacion h3 {
-  color: #5000ac;
-}
-
-.documentacion ul.listado {
-  list-style: square;
-  margin-left: 20px;
-}
-
-.tabla-transicion {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 15px 0;
-}
-
-.tabla-transicion th, 
-.tabla-transicion td {
-  border: 1px solid #999;
-  padding: 6px;
+/* =========================
+   SECCIÓN DE ENTRADA
+========================= */
+.input-section {
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.tabla-transicion th {
-  background: #dbeafe;
+.input-section input {
+  width: 260px;
+  padding: 8px;
+  margin-right: 10px;
+  border: 2px solid #3b82f6;
+  border-radius: 6px;
+  font-size: 16px;
 }
 
-code {
-  background: #f3f4f6;
-  padding: 2px 5px;
-  border-radius: 4px;
-  font-family: monospace;
-}
-
-/* --- Grafo visual --- */
-.grafo-container {
-  text-align: center;
-  margin: 30px auto;
-  background: #f9fafb;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
-  width: 90%;
-  max-width: 620px;
-}
-
-svg {
-  width: 100%;
-  height: auto;
-}
-
-.nota-grafo {
-  font-size: 0.9rem;
-  color: #ffffff;
-  text-align: center;
-  margin-top: 10px;
-}
-
-/* --- Animaciones de estados --- */
-.active-node {
-  stroke: #f59e0b !important;
-  stroke-width: 4 !important;
-  animation: pulse 0.8s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-  from { fill-opacity: 0.9; }
-  to { fill-opacity: 0.5; }
-}
-
-/* --- Celda en proceso (leída/escrita) --- */
-.cell-marked {
-  background-color: #f59e0b !important;
+.input-section button {
+  background-color: #3b82f6;
   color: white;
-  border: 2px solid #b45309;
-  animation: blink 0.5s ease-in-out infinite alternate;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 4px;
+  transition: background 0.3s;
 }
 
-@keyframes blink {
-  from { opacity: 1; }
-  to { opacity: 0.6; }
+.input-section button:hover {
+  background-color: #2563eb;
+}
+
+#resetButton {
+  background-color: #ef4444;
+}
+
+#resetButton:hover {
+  background-color: #dc2626;
 }
 
 #autoButton {
@@ -206,3 +76,187 @@ svg {
   background-color: #15803d;
 }
 
+/* =========================
+   CINTA
+========================= */
+.tape-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tape {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 10px;
+  background: white;
+  border: 2px solid #93c5fd;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.cell {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  border: 1.5px solid #3b82f6;
+  margin: 2px;
+  text-align: center;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  background-color: #e0f2fe;
+}
+
+.cell.active {
+  background-color: #3b82f6;
+  color: white;
+  transform: scale(1.1);
+}
+
+.cell-marked {
+  background-color: #f59e0b !important;
+  color: white;
+  border: 2px solid #b45309;
+  animation: blink 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.6; }
+}
+
+/* =========================
+   ESTADO Y DI
+========================= */
+.status {
+  margin-top: 20px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 5px solid #2563eb;
+}
+
+#instantaneousDesc {
+  background: white;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  height: 160px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* =========================
+   RESULTADO
+========================= */
+.output {
+  margin-top: 20px;
+  text-align: center;
+  background: #ecfdf5;
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 5px solid #059669;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.output h2 {
+  color: #065f46;
+}
+
+/* =========================
+   GRAFO DE ESTADOS
+========================= */
+.grafo-resultado {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.grafo-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid #93c5fd;
+  padding: 10px;
+  max-width: 620px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.active-node {
+  stroke: #22c55e !important;
+  stroke-width: 4 !important;
+  animation: pulse 0.6s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 1; }
+  to { opacity: 0.7; }
+}
+
+.nota-grafo {
+  font-size: 14px;
+  color: #374151;
+  margin-top: 10px;
+}
+
+/* =========================
+   TABLA DE TRANSICIÓN
+========================= */
+.tabla-transicion {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 15px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-transicion th {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 8px;
+}
+
+.tabla-transicion td {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: center;
+}
+
+.tabla-transicion tr:hover {
+  background-color: #f3f4f6;
+}
+
+/* =========================
+   DOCUMENTACIÓN
+========================= */
+.documentacion {
+  margin-top: 30px;
+  background: #f9fafb;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.documentacion h2 {
+  color: #1e3a8a;
+}
+
+.listado li {
+  margin-bottom: 6px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background-color: #1e3a8a;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 30px;
+  font-size: 14px;
+}
