@@ -7,7 +7,7 @@ let currentStep = 0;
 let autoInterval = null;
 let autoRunning = false;
 
-
+// Referencias a elementos del DOM
 const tapeDiv = document.getElementById("tape");
 const stateSpan = document.getElementById("state");
 const diPre = document.getElementById("instantaneousDesc");
@@ -18,13 +18,14 @@ document.getElementById("stepButton").addEventListener("click", siguientePaso);
 document.getElementById("resetButton").addEventListener("click", reiniciar);
 document.getElementById("autoButton").addEventListener("click", toggleAutoSim);
 
-
+// ---------------------- INICIAR ----------------------
 function iniciar() {
   const input = document.getElementById("input").value.trim();
   if (!input.includes(" ")) {
     alert("Por favor, ingresa dos números binarios separados por un espacio.");
     return;
   }
+
   const [a, b] = input.split(" ");
   if (!/^[01]+$/.test(a) || !/^[01]+$/.test(b)) {
     alert("Solo se permiten números binarios (0 y 1).");
@@ -32,6 +33,7 @@ function iniciar() {
   }
 
   reiniciar(false);
+
   tape = ["_", ...a.split(""), "_", ...b.split(""), "_"];
   head = 1;
   state = "q0";
@@ -39,12 +41,13 @@ function iniciar() {
 
   const suma = simularSuma(a, b);
   steps = suma.pasos;
-  diPre.textContent = "Máquina iniciada...\nPresiona 'Paso a paso' para comenzar.";
+
+  diPre.textContent = "Máquina iniciada...\nPresiona 'Paso a paso' o 'Simular automáticamente' para comenzar.";
   document.getElementById("stepButton").disabled = false;
   document.getElementById("autoButton").disabled = false;
-
 }
 
+// ---------------------- SIGUIENTE PASO ----------------------
 function siguientePaso() {
   if (currentStep < steps.length) {
     const paso = steps[currentStep];
@@ -58,15 +61,17 @@ function siguientePaso() {
     mostrarDI(paso);
     actualizarGrafo(state);
     actualizarTabla(paso.transicion);
+
     currentStep++;
   } else {
     document.getElementById("stepButton").disabled = true;
-    actualizarGrafo("q2");
+    actualizarGrafo("q_accept");
     resultP.textContent = steps.at(-1).resultadoFinal;
-    diPre.textContent += "\n La máquina ha finalizado.";
+    diPre.textContent += "\n✅ La máquina ha finalizado.";
   }
 }
 
+// ---------------------- REINICIAR ----------------------
 function reiniciar(resetInput = true) {
   tape = [];
   head = 0;
@@ -78,9 +83,11 @@ function reiniciar(resetInput = true) {
   diPre.textContent = "Esperando entrada...";
   resultP.textContent = "-";
   document.getElementById("stepButton").disabled = true;
+  document.getElementById("autoButton").disabled = true;
   if (resetInput) document.getElementById("input").value = "";
 }
 
+// ---------------------- RENDERIZAR CINTA ----------------------
 function renderTape() {
   tapeDiv.innerHTML = "";
 
@@ -108,29 +115,33 @@ function renderTape() {
   stateSpan.textContent = state;
 }
 
+// ---------------------- MOSTRAR DESCRIPCIÓN INSTANTÁNEA ----------------------
 function mostrarDI(paso) {
   const di = `(${paso.estado}, ${paso.cinta.join("")}, ${paso.cabezal})`;
   diPre.textContent += `\n${di}`;
   diPre.scrollTop = diPre.scrollHeight;
 }
 
-//  ANIMACIÓN 
+// ---------------------- GRAFO ----------------------
 function actualizarGrafo(estado) {
-  ["q0", "q1", "q2"].forEach(id => {
+  ["q0", "q1", "q_accept"].forEach(id => {
     const node = document.getElementById(`node-${id}`);
     if (!node) return;
     node.classList.remove("active-node");
   });
+
+  if (estado === "reset") return;
+
   const activo = document.getElementById(`node-${estado}`);
   if (activo) activo.classList.add("active-node");
 }
 
-// TABLA DE TRANSICIÓN
+// ---------------------- TABLA DE TRANSICIÓN ----------------------
 function actualizarTabla(transicion) {
   const tabla = document.querySelector(".tabla-transicion");
   if (!tabla) return;
 
-  
+  // Limpia todos los resaltados previos
   tabla.querySelectorAll("tr").forEach(tr => {
     tr.style.background = "white";
     tr.style.transition = "background 0.3s";
@@ -140,17 +151,16 @@ function actualizarTabla(transicion) {
   let filaIndex = -1;
   if (state === "q0") filaIndex = 1;
   else if (state === "q1") filaIndex = 2;
-  else if (state === "q2") filaIndex = 4;
+  else if (state === "q_accept") filaIndex = 4;
 
- 
+  // Si encontramos la fila correspondiente, la resaltamos
   if (filaIndex > 0) {
     const fila = tabla.querySelectorAll("tr")[filaIndex];
     if (fila) fila.style.background = "#dbeafe";
   }
 }
 
-
-//paso a paso de la suma binaria 
+// ---------------------- SIMULAR SUMA ----------------------
 function simularSuma(a, b) {
   let i = a.length - 1;
   let j = b.length - 1;
@@ -160,7 +170,6 @@ function simularSuma(a, b) {
 
   // Construimos la cinta visual completa
   let cinta = ["_", ...a.split(""), "_", ...b.split(""), "_"];
-  let posSeparador = a.length + 1; // posición del "_"
   let cabezal = cinta.length - 2;  // comienza desde el final
 
   while (i >= 0 || j >= 0 || carry) {
@@ -174,7 +183,6 @@ function simularSuma(a, b) {
     // Simular visualmente el movimiento de la cinta
     const cintaPaso = [...cinta];
     if (cabezal >= 0 && cabezal < cintaPaso.length) {
-      // Marcamos la celda leída o escrita con paréntesis
       cintaPaso[cabezal] = `(${cintaPaso[cabezal]})`;
     }
 
@@ -190,23 +198,24 @@ function simularSuma(a, b) {
   }
 
   pasos.push({
-    estado: "q2",
+    estado: "q_accept",
     cinta: [...cinta],
     cabezal,
     resultadoFinal: resultado,
-    transicion: { estado: "q2" }
+    transicion: { estado: "q_accept" }
   });
 
   return { pasos, resultado };
 }
 
+// ---------------------- SIMULACIÓN AUTOMÁTICA ----------------------
 function toggleAutoSim() {
   const btn = document.getElementById("autoButton");
 
   if (!autoRunning) {
     // Iniciar la simulación automática
     autoRunning = true;
-    btn.textContent = "⏸ Pausar simulación";
+    btn.textContent = "⏸️ Pausar simulación";
 
     autoInterval = setInterval(() => {
       if (currentStep < steps.length) {
